@@ -5,9 +5,16 @@ from kivy.uix.textinput import TextInput
 
 
 class BasicCalculatorApp(App):
-    # ToDo: Create __init__
 
-    def build(self):
+    def __init__(self, **kwargs):
+        """
+        Initializes variables used by app.
+
+        :param kwargs:
+        """
+
+        # Inherits from BasicCalculatorApp
+        super(BasicCalculatorApp, self).__init__(**kwargs)
 
         # List of operators
         self.operators = ["/", "*", "+", "-"]
@@ -18,9 +25,6 @@ class BasicCalculatorApp(App):
         # Last pressed button
         self.last_button = None
 
-        # Top Level main_layout
-        main_layout = BoxLayout(orientation="vertical")
-
         # Text Input settings
         self.solution = TextInput(
             multiline=False,
@@ -28,6 +32,17 @@ class BasicCalculatorApp(App):
             halign="right",
             font_size=60
         )
+
+    def build(self):
+        """
+        Builds main_layout using multiple types of widgets.
+
+        :return: main_layout
+        :rtype: object
+        """
+
+        # Top Level main_layout
+        main_layout = BoxLayout(orientation="vertical")
 
         # Added TextInput to main_layout
         main_layout.add_widget(self.solution)
@@ -70,6 +85,12 @@ class BasicCalculatorApp(App):
 
     # Takes instance argument so it can access which widget called this method
     def on_button_press(self, instance):
+        """
+        Determines button press and updates self.solution.text
+
+        :param instance:
+        :return: None
+        """
 
         # Stores value of solution.text in current
         current = self.solution.text
@@ -100,10 +121,15 @@ class BasicCalculatorApp(App):
         self.last_was_operator = self.last_button in self.operators
 
     def on_solution(self, instance):
+        """
+        Evaluates solution entered by user.
+
+        :param instance:
+        :return: None
+        """
         text = self.solution.text
         if text:
-            # Todo: Change self.solution.text to text if works
-            solution = str(eval(self.solution.text))
+            solution = str(eval(text))
             self.solution.text = solution
 
 
