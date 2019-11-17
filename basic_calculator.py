@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
+from kivy.core.window import Window
 
 
 class BasicCalculatorApp(App):
@@ -33,6 +34,17 @@ class BasicCalculatorApp(App):
             font_size=60
         )
 
+        # Color Settings
+        self.red = (1, 0, 0, 1)
+        self.green = (0, 1, 0, 1)
+        self.blue = (0, 0, 1, 1)
+        self.yellow = (1, 1, 0, 1)
+        self.purple = (1, 0, 1, 1)
+        self.cyan = (0, 1, 1, 1)
+        self.white = (1, 1, 1, 1)
+        self.black = (0, 0, 0, 1)
+        self.grey = (0.2, 0.2, 0.2, 1)
+
     def build(self):
         """
         Builds main_layout using multiple types of widgets.
@@ -41,8 +53,14 @@ class BasicCalculatorApp(App):
         :rtype: object
         """
 
+        Window.clearcolor = self.grey
+
         # Top Level main_layout
-        main_layout = BoxLayout(orientation="vertical")
+        main_layout = BoxLayout(
+            orientation="vertical",
+            padding=10,
+            spacing=10
+        )
 
         # Added TextInput to main_layout
         main_layout.add_widget(self.solution)
@@ -58,11 +76,14 @@ class BasicCalculatorApp(App):
         # Loop creates button widgets
         for row in buttons:
             # Creates horizontal BoxLayout
-            h_layout = BoxLayout()
+            h_layout = BoxLayout(
+                spacing=10
+            )
             # Creates individual buttons
             for label in row:
                 button = Button(
                     text=label,
+                    font_size=50,
                     pos_hint={"center_x": 0.5, "center_y": 0.5}
                 )
                 # Binds buttons to on_button_press event handler
@@ -75,6 +96,7 @@ class BasicCalculatorApp(App):
         # Creates equals button
         equals_button = Button(
             text="=",
+            font_size=50,
             pos_hint={"center_x": 0.5, "center_y": 0.5}
         )
         # Binds button to on_solution event handler
