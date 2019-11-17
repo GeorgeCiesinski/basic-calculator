@@ -53,7 +53,9 @@ class BasicCalculatorApp(App):
         :rtype: object
         """
 
+        # Window settings
         Window.clearcolor = self.grey
+        self.title="BASIC CALCULATOR"
 
         # Top Level main_layout
         main_layout = BoxLayout(
