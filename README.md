@@ -1,4 +1,6 @@
 # Basic Calculator
+![Python Version](https://img.shields.io/badge/Python-3-blue)
+
 Basic calculator built using Python 3 and Kivy.
 
 ## Motivation
